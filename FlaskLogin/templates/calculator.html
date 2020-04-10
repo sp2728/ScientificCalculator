@@ -14,7 +14,7 @@
                     <form name="calculator" method="POST" action="/calculator">
                         <div class="row">
                             <input type="text" name="ans" class="form-control" value={{result}}>
-                            <input type="text" name="res" class="form-control" value="" hidden>
+                            <input type="text" name="res" class="form-control" value="{{result2}}" hidden>
                         </div>
 
                         <div class="row pt-3">
@@ -101,11 +101,11 @@
                         {% for row in ALLhistory %}
 
                         {% if row.num2 == null or row.num2 == None %}
-                        <li class="list-group-item"><span class="float-left">{{row.num1}} {{row.op}}= {{row.res}}</span>
+                        <li class="list-group-item"><a class="float-left" href="/edit/{{row.id}}">{{row.num1}} {{row.op}}= {{row.res}}</a>
                             <a href="/delete/{{row.id}}" class="btn btn-danger btn-xs float-right">Delete</a>
                         </li>
                         {% else %}
-                        <li class="list-group-item"><span class="float-left">{{row.num1}} {{row.op}} {{row.num2}} = {{row.res}}</span>
+                        <li class="list-group-item"><a class="float-left" href="/edit/{{row.id}}" >{{row.num1}} {{row.op}} {{row.num2}} = {{row.res}}</a>
                             <a href="/delete/{{row.id}}" class="btn btn-danger btn-xs float-right">Delete</a>
                         </li>
                         {% endif %}

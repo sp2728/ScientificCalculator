@@ -28,6 +28,7 @@ def calculator():
 @main.route('/calculator', methods=['POST'])
 def calc_post():
     calc = request.form.get('res')
+    print(calc)
     first = calc.split('z')
     if (first[1] == '+'):
         res = calculatorfun.add(float(first[0]), float(first[2]))
@@ -82,7 +83,7 @@ def calc_post():
 
     all_data = History.query.filter(History.email == current_user.email)
 
-    return render_template('calculator.html', result=res, ALLhistory=all_data)
+    return render_template('calculator.html', result=res, result2=res, ALLhistory=all_data)
 
 
 @main.route('/delete/<int:id>')
@@ -95,6 +96,13 @@ def delete(id):
 
     return render_template('calculator.html', ALLhistory=all_data)
 
+@main.route('/edit/<int:id>')
+def edit(id):
+    all_data = History.query.get(id)
+
+    res = all_data.res
+    all_data1 = History.query.filter(History.email == current_user.email)
+    return render_template('calculator.html', result=res, result2=res, ALLhistory=all_data1)
 
 @main.route('/clear')
 def clearHistory():
@@ -104,10 +112,14 @@ def clearHistory():
     all_data1 = History.query.filter(History.email == current_user.email)
     return render_template('calculator.html', ALLhistory=all_data1)
 
+
 @main.route('/clearEntry/<res>')
 def clearEntry(res):
-     s=''
-     res = res.split('z')[:-1]
-     s= s.join(res)
-     all_data = History.query.filter(History.email == current_user.email)
-     return render_template('calculator.html', result=s, ALLhistory=all_data)
+    s1 = ''
+    s2 = 'z'
+    res1 = res.split('z')[:-1]
+    res2=res.split('z')[:-1]
+    s1 = s1.join(res1)
+    s2 = s2.join(res2)+"z"
+    all_data = History.query.filter(History.email == current_user.email)
+    return render_template('calculator.html', result=s1, result2=s2, ALLhistory=all_data)
