@@ -18,3 +18,4 @@ zipp==3.0.0
 scipy>=0.15.1
 numpy>=1.9.2
 pytest-flask==1.0.0
+Flask-SQLAlchemy==2.4.1
