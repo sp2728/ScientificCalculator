@@ -10,9 +10,18 @@ def app():
     return app
 
 
-def test_app(client):
+def test_index(client):
+    assert client.get(url_for('main.index')).status_code == 200
+
+def test_getLogin(client):
+    assert client.get(url_for('auth.login')).status_code == 200
+
+def test_getSignup(client):
     assert client.get(url_for('auth.signup')).status_code == 200
 
 
+
 def test_login(client):
-    assert client.post(url_for('auth.login'), data={'email':'saikiran1298gmail.com', 'password':'sachej-5fivxo-rIwbod'}, follow_redirects=True).status_code == 200
+    rv = client.post(url_for('auth.login'),{'email':'saikiran1298gmail.com', 'password':'sachej-5fivxo-rIwbod'})
+    print(rv)
+    assert rv.status_code==302
