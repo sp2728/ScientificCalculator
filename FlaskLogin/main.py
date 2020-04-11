@@ -42,7 +42,7 @@ def calc_post():
                           email=current_user.email)
 
 
-    elif (first[1] == '/'):
+    elif (first[1] == '÷'):
         res = calculatorfun.divide(float(first[0]), float(first[2]))
         history = History(num1=float(first[0]), num2=float(first[2]), op=first[1], res=float(round(res, 5)),
                           email=current_user.email)
@@ -99,7 +99,6 @@ def delete(id):
 @main.route('/edit/<int:id>')
 def edit(id):
     all_data = History.query.get(id)
-
     res = all_data.res
     all_data1 = History.query.filter(History.email == current_user.email)
     return render_template('calculator.html', result=res, result2=res, ALLhistory=all_data1)
@@ -117,6 +116,7 @@ def clearHistory():
 def clearEntry(res):
     s1 = ''
     s2 = 'z'
+
     res1 = res.split('z')[:-1]
     res2=res.split('z')[:-1]
     s1 = s1.join(res1)
