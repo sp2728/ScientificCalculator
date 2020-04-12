@@ -30,6 +30,3 @@ def test_login(client):
     assert b"Profile" in rv.data
     assert b"Calculator" in rv.data
     assert b"Logout" in rv.data
-
-
-
