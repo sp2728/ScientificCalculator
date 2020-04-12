@@ -3,9 +3,6 @@
 {% block content %}
 <h1 class="title">
     Welcome, {{ name }}!
-  <div class="home">
-
-  </div>
-    <a href="{{ url_for('main.calculator') }}" > Open Calculator </a>
+    <a href="{{ url_for('main.calculator') }}" class="btn btn-primary btn-lg" > Open Calculator </a>
 </h1>
 {% endblock %}

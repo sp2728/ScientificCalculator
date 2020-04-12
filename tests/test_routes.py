@@ -41,7 +41,6 @@ def test_logout(client):
     rv1 = client.get(url_for('auth.logout'), follow_redirects=True)
     assert rv1.status_code == 200
     assert b"Home" in rv1.data
-    assert b"Calculator" not in rv1.data
 
 
 def test_user_creation(client):
