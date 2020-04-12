@@ -22,22 +22,14 @@ def test_getSignup(client):
     assert client.get(url_for('auth.signup')).status_code == 200
 
 def test_login(client):
-    rv = client.post(url_for('auth.login'), data={'email':'va322@njit.edu', 'password':'va322@njit'})
+    rv = client.post(url_for('auth.login'), data={'email':'va322@njit.edu', 'password':'va322@njit'}, follow_redirects=True)
     print(rv)
-    assert rv.status_code == 302
+    assert rv.status_code == 200
+    assert b"Welcome, varsha!" in rv.data
+    assert b"Home" in rv.data
+    assert b"Profile" in rv.data
+    assert b"Calculator" in rv.data
+    assert b"Logout" in rv.data
 
-'''
-def test_login(client):
-    d = client.get(url_for('auth.login'))
-    response = client.post(d,
-                           data=dict(email='patkennedy79@gmail.com', password='FlaskIsAwesome', name='Pat'),
-                           follow_redirects=True)
-    assert response.status_code == 200
-    assert b"Welcome, Pat!" in response.data
-    assert b"Open Calculator" in response.data
-    assert b"Home" in response.data
-    assert b"Profile" in response.data
-    assert b"Calculator" in response.data
-    assert b"Logout" in response.data
-    assert b"Login" not in response.data
-    assert b"Register" not in response.data'''
+
+
